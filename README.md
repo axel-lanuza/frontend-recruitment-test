@@ -50,7 +50,7 @@ We've wired in [SASS](http://sass-lang.com/) with our base stylesheet (`bpk-styl
 
 ## Our API
 
-We're hitting a real Skyscanner API in this test, and have provided a basic client on top - see [live-pricing.js](./app/src/api/live-pricing.js) of it to make things easier for you.
+We're hitting a real Skyscanner API in this test, and have provided a basic client on top of it - see [live-pricing.js](./app/src/api/live-pricing.js) - to make things easier for you.
 
 Our [API documentation is available here](https://github.com/Skyscanner/api-documentation/tree/master/live_flights_pricing) and a [test harness is provided](http://business.skyscanner.net/portal/en-GB/Documentation/FlightsLivePricingQuickStart) for you to try queries out.
 
