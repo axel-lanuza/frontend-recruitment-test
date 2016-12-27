@@ -9,6 +9,8 @@ const maxRetries = 3;
 const maxPollTime = 15 * 1000;
 const pollDelay = 1000;
 
+let cachedData = {};
+
 /**
   Rough implementation of live pricing api client, as per
   http://business.skyscanner.net/portal/en-GB/Documentation/FlightsLivePricingList
@@ -62,6 +64,7 @@ function startPolling (session) {
     // encapsulation of polling state to pass around
     const pollState = {
       creds: { apiKey: config.apiKey, sessionKey: sessionKey },
+      finished: false,
       onFinished: resolve,
       onError: reject,
       timedOut: false,
@@ -87,6 +90,8 @@ function startPolling (session) {
 }
 
 function poll (state) {
+  if (state.finished) return;
+
   // auto-repoll if nothing happens for a while
   const backupTimer = setTimeout(() => {
     state.repoll();
@@ -97,9 +102,15 @@ function poll (state) {
   livePricing.api.pollSession(state.creds)
     .then((response) => {
       clearTimeout(backupTimer);
+
+      if (response.status === 304) {
+        return cachedData;
+      }
+
       return response.json();
     })
     .then((data) => {
+      cachedData = data;
       state.success(data);
     })
     .catch(state.err);
@@ -108,6 +119,7 @@ function poll (state) {
 function pollSuccess (state, data) {
   if (data.Status === 'UpdatesComplete' || state.timedOut) {
     console.log('[API] polling complete.');
+    state.finished = true;
     return state.onFinished(data);
   }
   state.repoll();
