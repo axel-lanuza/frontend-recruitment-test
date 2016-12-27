@@ -1,3 +1,3 @@
-import TopNav from './TopNav.js'
+import TopNav from './TopNav';
 
-export default TopNav
+export default TopNav;

@@ -1,7 +1,7 @@
-/* eslint no-use-before-define:0 */
-const _ = require('lodash');
-const config = require('../config');
-const querystring = require('query-string');
+/* eslint-disable */
+import _ from 'lodash';
+import config from '../config';
+import querystring from 'query-string';
 
 const pricingUrl = config.skyscannerApi + 'apiservices/pricing/v1.0';
 

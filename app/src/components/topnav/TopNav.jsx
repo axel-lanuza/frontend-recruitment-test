@@ -1,14 +1,15 @@
 import React from 'react';
+
 // css module use - import the scss file as an object, assign dynamic classnames to elements
 import './TopNav.scss';
 
 const TopNav = () => (
-  <header className='header'>
+  <header className="header">
     <a href="/">
-      <span className='logoText'>Skyscanner</span>
-      <span className='logo' />
+      <span className="logoText">Skyscanner</span>
+      <span className="logo" role="presentation" />
     </a>
-     // TODO burger menu icon
+    {/* TODO burger menu icon */}
   </header>
 );
 

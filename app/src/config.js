@@ -6,7 +6,7 @@ if (!APIKEY) {
     'Please obtain from your Skyscanner recruitment contact');
 }
 
-module.exports = {
+export default {
   apiKey: APIKEY,
-  skyscannerApi: '/' // proxied for us by webpack dev-server; leave as-is
+  skyscannerApi: '/', // proxied for us by webpack dev-server; leave as-is
 };
